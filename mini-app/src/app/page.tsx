@@ -9,17 +9,13 @@ import { Page } from "@/components/Page";
 
 import tonSvg from "./_assets/ton.svg";
 import { initData, useSignal } from "@telegram-apps/sdk-react";
-import { useAuthUser } from "@/hooks/queryHooks";
+import { useAuthUser } from "@/hooks/authHooks";
 import { useEffect } from "react";
 
 export default function Home() {
   const t = useTranslations("i18n");
   const initDataRaw = useSignal(initData.raw);
-  const {
-    data: user,
-    refetch,
-    isLoading,
-  } = useAuthUser(initDataRaw);
+  const { data: user, refetch, isLoading } = useAuthUser(initDataRaw);
   useEffect(() => {
     refetch();
   }, [initDataRaw]);
